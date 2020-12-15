@@ -1,0 +1,17 @@
+.admin-page {
+  width: 100%;
+  height: 800px;
+  background-color: yellow;
+}
+
+.admin-page-form-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background-color: white;
+  box-shadow: 2px 5px 20px #aaaaaa;
+  padding: 50px;
+
+  width: 500px;
+  margin: 10px auto;
+}

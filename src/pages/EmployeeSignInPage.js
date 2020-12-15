@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/EmployeeSignInPage.css";
+import "../styles/EmployeeSignInPage.scss";
 import FormInput from "../components/FormInput";
 import CustomButton from "../components/CustomButton";
 
