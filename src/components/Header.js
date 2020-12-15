@@ -1,6 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/Header.scss";
 
-const Header = () => <div> HEADER </div>;
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="options">
+        <Link className="option" to="/admin">
+          ADMIN
+        </Link>
+        <Link className="option" to="/">
+          EMPLOYEE SIGN IN
+        </Link>
+      </div>
+    </div>
+  );
+};
 
 export default Header;

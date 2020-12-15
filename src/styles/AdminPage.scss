@@ -1,7 +1,10 @@
 .admin-page {
   width: 100%;
-  height: 800px;
+  height: 110vh;
   background-color: yellow;
+  position: absolute;
+  top: 100px;
+  bottom: 0;
 }
 
 .admin-page-form-container {
@@ -13,5 +16,11 @@
   padding: 50px;
 
   width: 500px;
-  margin: 10px auto;
+  margin: 0px auto;
+}
+
+.admin-page-header {
+  margin: 0;
+  padding: 0;
+  height: 5px;
 }
