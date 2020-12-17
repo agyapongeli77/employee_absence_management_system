@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/EmployeeSignInPage.scss";
 import { auth } from "../firebase/firebase.utils";
+import { withRouter } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import CustomButton from "../components/CustomButton";
 import Header from "../components/Header";
@@ -24,9 +25,9 @@ class EmployeeSignInPage extends Component {
       await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: "", password: "" });
 
-      // this.props.history.push("/");
+      this.props.history.push("/profile");
     } catch (error) {
-      console.log("error signing in is...", error);
+      console.log("error signing in", error);
     }
   };
 
@@ -71,4 +72,4 @@ class EmployeeSignInPage extends Component {
   }
 }
 
-export default EmployeeSignInPage;
+export default withRouter(EmployeeSignInPage);

@@ -4,6 +4,7 @@ import "./App.css";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import EmployeeSignInPage from "./pages/EmployeeSignInPage";
 import AdminPage from "./pages/AdminPage";
+import ProfilePage from "./pages/ProfilePage";
 
 class App extends Component {
   constructor(props) {
@@ -14,10 +15,29 @@ class App extends Component {
     };
   }
 
+  unsubscribeFromAuth = null;
+
   componentDidMount() {
-    auth.onAuthStateChanged((user) => {
-      console.log(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot((snapShot) => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
+            },
+          });
+          console.log(this.state);
+        });
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
     });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
   }
 
   render() {
@@ -25,7 +45,11 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={EmployeeSignInPage} />
-          <Route exact path="/admin" component={AdminPage} />
+          <Route path="/admin" component={AdminPage} />
+          <Route
+            path="/profile"
+            render={() => <ProfilePage currentUser={this.state.currentUser} />}
+          />
         </Switch>
       </div>
     );

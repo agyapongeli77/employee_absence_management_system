@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { auth, createUserProfileDocument } from "../firebase/firebase.utils";
 import FormInput from "../components/FormInput";
 import CustomButton from "../components/CustomButton";
 import "../styles/AdminPage.scss";
@@ -18,8 +19,47 @@ class AdminPage extends Component {
     };
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
+
+    const {
+      fullName,
+      department,
+      supervisor,
+      email,
+      password,
+      confirmPassword,
+    } = this.state;
+
+    if (password !== confirmPassword) {
+      alert("password don't match");
+      return;
+    }
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUserProfileDocument(user, {
+        fullName,
+        department,
+        supervisor,
+      });
+
+      //auth.signOut();
+
+      this.setState({
+        fullName: "",
+        department: "",
+        supervisor: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   handleChange = (event) => {
@@ -38,7 +78,7 @@ class AdminPage extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="admin-page-header">
         <Header />
         <div className="admin-page">
           <h2 className="title"> Admin Page</h2>
