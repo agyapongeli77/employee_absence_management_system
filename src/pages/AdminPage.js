@@ -60,6 +60,11 @@ class AdminPage extends Component {
     } catch (error) {
       console.error(error);
     }
+
+    //this sign out is called to prevent the default behaviour of
+    //firebase authentication which keeps the user signed in after the account
+    //has been created
+    auth.signOut();
   };
 
   handleChange = (event) => {

@@ -28,7 +28,7 @@ class App extends Component {
               ...snapShot.data(),
             },
           });
-          console.log(this.state);
+          console.log("CURRENT USER IS...", this.state.currentUser);
         });
       } else {
         this.setState({ currentUser: userAuth });
