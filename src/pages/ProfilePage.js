@@ -13,7 +13,8 @@ const ProfilePage = (props) => {
         <h1> Employee's Full Name: {currentUser.fullName} </h1>
         <h1> Employee's Email: {currentUser.email} </h1>
         <h1> Employee's Department: {currentUser.department} </h1>
-        <h1> Employee's Supervisore: {currentUser.supervisor} </h1>
+        <h1> Employee's Supervisor: {currentUser.supervisor} </h1>
+        <h1> Employee's Office: {currentUser.office} </h1>
       </div>
     );
   }

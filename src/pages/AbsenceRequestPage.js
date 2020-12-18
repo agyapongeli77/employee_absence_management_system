@@ -67,9 +67,6 @@ class AbsenceRequestPage extends Component {
       dateOfReturn,
     } = this.state;
 
-    console.log("currentuser from auth.currentuser is...", auth.currentUser);
-    console.log("absence request currentuser props...", this.props);
-
     return (
       <div className="absence-page-container">
         <DashboardHeader currentUser={this.props.currentUser} />
