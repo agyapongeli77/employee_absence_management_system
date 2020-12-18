@@ -1,4 +1,4 @@
-.admin-page {
+.admin-page-main {
   width: 100%;
   height: 110vh;
   background-color: yellow;
@@ -14,12 +14,11 @@
   background-color: white;
   box-shadow: 2px 5px 20px #aaaaaa;
   padding: 50px;
-
   width: 500px;
   margin: 0px auto;
 }
 
-.admin-page-header {
+.admin-page-container {
   margin: 0;
   padding: 0;
   height: 5px;

@@ -5,6 +5,7 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import EmployeeSignInPage from "./pages/EmployeeSignInPage";
 import AdminPage from "./pages/AdminPage";
 import ProfilePage from "./pages/ProfilePage";
+import AbsenceRequestPage from "./pages/AbsenceRequestPage";
 
 class App extends Component {
   constructor(props) {
@@ -49,6 +50,12 @@ class App extends Component {
           <Route
             path="/profile"
             render={() => <ProfilePage currentUser={this.state.currentUser} />}
+          />
+          <Route
+            path="/absence-request"
+            component={() => (
+              <AbsenceRequestPage currentUser={this.state.currentUser} />
+            )}
           />
         </Switch>
       </div>

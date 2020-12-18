@@ -41,8 +41,11 @@ const DashboardHeader = ({ currentUser }) => {
           <Link className="dashboard-header-option-bottom" to="/profile">
             PROFILE
           </Link>
-          <Link className="dashboard-header-option-bottom" to="/">
-            REQUEST DAY OFF
+          <Link
+            className="dashboard-header-option-bottom"
+            to="/absence-request"
+          >
+            REQUEST DAYS OFF
           </Link>
           <Link className="dashboard-header-option-bottom" to="/">
             VIEW DAYS OFF
