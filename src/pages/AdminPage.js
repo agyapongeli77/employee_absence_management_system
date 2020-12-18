@@ -13,6 +13,7 @@ class AdminPage extends Component {
       fullName: "",
       department: "",
       supervisor: "",
+      office: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -26,6 +27,7 @@ class AdminPage extends Component {
       fullName,
       department,
       supervisor,
+      office,
       email,
       password,
       confirmPassword,
@@ -45,6 +47,7 @@ class AdminPage extends Component {
         fullName,
         department,
         supervisor,
+        office,
       });
 
       //auth.signOut();
@@ -53,6 +56,7 @@ class AdminPage extends Component {
         fullName: "",
         department: "",
         supervisor: "",
+        office: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -77,6 +81,7 @@ class AdminPage extends Component {
       fullName,
       department,
       supervisor,
+      office,
       email,
       password,
       confirmPassword,
@@ -112,6 +117,14 @@ class AdminPage extends Component {
                 value={supervisor}
                 onChange={this.handleChange}
                 label="Employee's Supervisor"
+                required
+              />
+              <FormInput
+                type="text"
+                name="office"
+                value={office}
+                onChange={this.handleChange}
+                label="Office (e.g. Colorado Office, NY Office)"
                 required
               />
               <FormInput

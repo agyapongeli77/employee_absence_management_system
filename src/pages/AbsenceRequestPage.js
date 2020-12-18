@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import {
+  auth,
+  createUserAbsenceRequestDocument,
+} from "../firebase/firebase.utils";
 import "../styles/AbsenceRequestPage.scss";
 import FormInput from "../components/FormInput";
 import CustomButton from "../components/CustomButton";
@@ -9,10 +13,6 @@ class AbsenceRequestPage extends Component {
     super(props);
 
     this.state = {
-      employeeName: "",
-      department: "",
-      supervisor: "",
-      office: "",
       typeOfAbsenceRequest: "",
       numberOfDaysRequested: "",
       absenceStartDate: "",
@@ -21,17 +21,10 @@ class AbsenceRequestPage extends Component {
     };
   }
 
-  handleChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
-  };
+  handleSubmit = async (event) => {
+    event.preventDefault();
 
-  render() {
     const {
-      employeeName,
-      department,
-      supervisor,
-      office,
       typeOfAbsenceRequest,
       numberOfDaysRequested,
       absenceStartDate,
@@ -39,6 +32,42 @@ class AbsenceRequestPage extends Component {
       dateOfReturn,
     } = this.state;
 
+    try {
+      await createUserAbsenceRequestDocument(auth.currentUser, {
+        typeOfAbsenceRequest,
+        numberOfDaysRequested,
+        absenceStartDate,
+        absenceEndDate,
+        dateOfReturn,
+      });
+
+      this.setState({
+        typeOfAbsenceRequest: "",
+        numberOfDaysRequested: "",
+        absenceStartDate: "",
+        absenceEndDate: "",
+        dateOfReturn: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  handleChange = (event) => {
+    const { value, name } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  render() {
+    const {
+      typeOfAbsenceRequest,
+      numberOfDaysRequested,
+      absenceStartDate,
+      absenceEndDate,
+      dateOfReturn,
+    } = this.state;
+
+    console.log("currentuser from auth.currentuser is...", auth.currentUser);
     console.log("absence request currentuser props...", this.props);
 
     return (
@@ -48,46 +77,21 @@ class AbsenceRequestPage extends Component {
           <h2 className="title">Absence Request Form</h2>
           <div className="absence-page-form-container">
             <form onSubmit={this.handleSubmit}>
-              <FormInput
-                type="text"
-                name="employeeName"
-                value={employeeName}
-                onChange={this.handleChange}
-                label="Employee's Full Name"
-                required
-              />
-              <FormInput
-                type="text"
-                name="department"
-                value={department}
-                onChange={this.handleChange}
-                label="Employee's Department"
-                required
-              />
-              <FormInput
-                type="text"
-                name="supervisor"
-                value={supervisor}
-                onChange={this.handleChange}
-                label="Employee's Supervisor"
-                required
-              />
-              <FormInput
-                type="text"
-                name="office"
-                value={office}
-                onChange={this.handleChange}
-                label="Office"
-                required
-              />
-              <FormInput
-                type="select"
-                name="option"
+              <select
+                name="typeOfAbsenceRequest"
                 value={typeOfAbsenceRequest}
                 onChange={this.handleChange}
-                label="Type Of Absence Request"
                 required
-              />
+              >
+                <option value="nothing">
+                  Please select type of absence request
+                </option>
+                <option value="Sick Day">Sick Day</option>
+                <option value="Personal Day">Personal Day</option>
+                <option value="Vacation">Vacation</option>
+                <option value="Bereavement">Bereavement</option>
+              </select>
+
               <FormInput
                 type="number"
                 name="numberOfDaysRequested"
@@ -114,10 +118,10 @@ class AbsenceRequestPage extends Component {
               />
               <FormInput
                 type="date"
-                name="absenceEndDate"
+                name="dateOfReturn"
                 value={dateOfReturn}
                 onChange={this.handleChange}
-                label="Returning Date: "
+                label="Returning Date:"
                 required
               />
 
