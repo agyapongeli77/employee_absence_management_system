@@ -13,6 +13,7 @@ class AdminPage extends Component {
       fullName: "",
       department: "",
       supervisor: "",
+      office: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -26,6 +27,7 @@ class AdminPage extends Component {
       fullName,
       department,
       supervisor,
+      office,
       email,
       password,
       confirmPassword,
@@ -45,6 +47,7 @@ class AdminPage extends Component {
         fullName,
         department,
         supervisor,
+        office,
       });
 
       //auth.signOut();
@@ -53,6 +56,7 @@ class AdminPage extends Component {
         fullName: "",
         department: "",
         supervisor: "",
+        office: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -77,15 +81,16 @@ class AdminPage extends Component {
       fullName,
       department,
       supervisor,
+      office,
       email,
       password,
       confirmPassword,
     } = this.state;
 
     return (
-      <div className="admin-page-header">
+      <div className="admin-page-container">
         <Header />
-        <div className="admin-page">
+        <div className="admin-page-main">
           <h2 className="title"> Admin Page</h2>
           <div className="admin-page-form-container">
             <span>Create account for employees in your department</span>
@@ -112,6 +117,14 @@ class AdminPage extends Component {
                 value={supervisor}
                 onChange={this.handleChange}
                 label="Employee's Supervisor"
+                required
+              />
+              <FormInput
+                type="text"
+                name="office"
+                value={office}
+                onChange={this.handleChange}
+                label="Office (e.g. Colorado Office, NY Office)"
                 required
               />
               <FormInput
