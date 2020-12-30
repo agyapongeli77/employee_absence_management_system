@@ -6,7 +6,6 @@ import profilePic from "../assets/profilepic.png";
 import logoutLogo from "../assets/logout.png";
 
 const DashboardHeader = ({ currentUser }) => {
-  console.log(currentUser);
   return (
     <div className="dashboard-header">
       <div className="dashboard-header-top">
@@ -47,7 +46,7 @@ const DashboardHeader = ({ currentUser }) => {
           >
             REQUEST DAYS OFF
           </Link>
-          <Link className="dashboard-header-option-bottom" to="/">
+          <Link className="dashboard-header-option-bottom" to="/viewdaysoff">
             VIEW DAYS OFF
           </Link>
         </div>

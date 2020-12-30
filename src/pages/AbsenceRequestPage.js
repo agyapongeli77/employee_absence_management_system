@@ -32,8 +32,15 @@ class AbsenceRequestPage extends Component {
       dateOfReturn,
     } = this.state;
 
+    const fullName = this.props.currentUser.fullName;
+    const office = this.props.currentUser.office;
+    const department = this.props.currentUser.department;
+
     try {
       await createUserAbsenceRequestDocument(auth.currentUser, {
+        fullName,
+        office,
+        department,
         typeOfAbsenceRequest,
         numberOfDaysRequested,
         absenceStartDate,
@@ -78,7 +85,6 @@ class AbsenceRequestPage extends Component {
                 name="typeOfAbsenceRequest"
                 value={typeOfAbsenceRequest}
                 onChange={this.handleChange}
-                required
               >
                 <option value="nothing">
                   Please select type of absence request
@@ -95,7 +101,6 @@ class AbsenceRequestPage extends Component {
                 value={numberOfDaysRequested}
                 onChange={this.handleChange}
                 label="How many days?"
-                required
               />
               <FormInput
                 type="date"
@@ -103,7 +108,6 @@ class AbsenceRequestPage extends Component {
                 value={absenceStartDate}
                 onChange={this.handleChange}
                 label="Absence Start Date:"
-                required
               />
               <FormInput
                 type="date"
@@ -111,7 +115,6 @@ class AbsenceRequestPage extends Component {
                 value={absenceEndDate}
                 onChange={this.handleChange}
                 label="Absence End Date:"
-                required
               />
               <FormInput
                 type="date"
@@ -119,7 +122,6 @@ class AbsenceRequestPage extends Component {
                 value={dateOfReturn}
                 onChange={this.handleChange}
                 label="Returning Date:"
-                required
               />
 
               <CustomButton type="submit">SUBMIT</CustomButton>

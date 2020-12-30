@@ -15,7 +15,7 @@ const config = {
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const userRef = db.doc(`users/${userAuth.uid}`);
 
   const snapShot = await userRef.get();
 
@@ -44,25 +44,27 @@ export const createUserAbsenceRequestDocument = async (
 ) => {
   if (!userAuth) return;
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const userRef = db
+    .collection("users")
+    .doc(`${userAuth.uid}`)
+    .collection("absenceRequestData")
+    .doc();
 
-  const snapShot = await userRef.get();
-
-  if (snapShot.exists) {
-    try {
-      await userRef.update({
-        ...additionalData,
-      });
-    } catch (error) {
-      console.log("error creating user", error.message);
-    }
+  try {
+    await userRef.set({
+      ...additionalData,
+    });
+  } catch (error) {
+    console.log("error adding data", error.message);
   }
+
   return userRef;
 };
 
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+export const db = firebase.firestore();
+export const batch = db.batch();
 
 export default firebase;

@@ -25,6 +25,9 @@ class EmployeeSignInPage extends Component {
       await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: "", password: "" });
 
+      //sends the user to the profile page when sign is successful
+      //react router withRouter High Order Component(HOC) makes it possible
+      //to access the history prop in this component
       this.props.history.push("/profile");
     } catch (error) {
       console.log("error signing in", error);

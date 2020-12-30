@@ -6,6 +6,7 @@ import EmployeeSignInPage from "./pages/EmployeeSignInPage";
 import AdminPage from "./pages/AdminPage";
 import ProfilePage from "./pages/ProfilePage";
 import AbsenceRequestPage from "./pages/AbsenceRequestPage";
+import ViewDaysRequestedPage from "./pages/ViewDaysRequestedPage";
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class App extends Component {
               ...snapShot.data(),
             },
           });
-          console.log(this.state);
+          console.log("currentUser from the App component...", this.state);
         });
       } else {
         this.setState({ currentUser: userAuth });
@@ -55,6 +56,12 @@ class App extends Component {
             path="/absence-request"
             component={() => (
               <AbsenceRequestPage currentUser={this.state.currentUser} />
+            )}
+          />
+          <Route
+            path="/viewdaysoff"
+            render={() => (
+              <ViewDaysRequestedPage currentUser={this.state.currentUser} />
             )}
           />
         </Switch>
