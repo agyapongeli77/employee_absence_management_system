@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { auth } from "../firebase/firebase.utils";
-import "../styles/DashboardHeader.scss";
+import "../styles/EmployeeDashboardHeader.scss";
 import profilePic from "../assets/profilepic.png";
 import logoutLogo from "../assets/logout.png";
 
-const DashboardHeader = ({ currentUser }) => {
+const EmployeeDashboardHeader = ({ currentUser }) => {
   return (
     <div className="dashboard-header">
       <div className="dashboard-header-top">
@@ -29,7 +29,7 @@ const DashboardHeader = ({ currentUser }) => {
             <img
               className="dashboard-header-logoutLogo"
               src={logoutLogo}
-              alt="profile-pic"
+              alt="logout-pic"
             />
             LOG OUT
           </Link>
@@ -55,4 +55,4 @@ const DashboardHeader = ({ currentUser }) => {
   );
 };
 
-export default withRouter(DashboardHeader);
+export default withRouter(EmployeeDashboardHeader);

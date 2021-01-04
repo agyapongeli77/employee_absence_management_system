@@ -6,7 +6,7 @@ import {
 import "../styles/AbsenceRequestPage.scss";
 import FormInput from "../components/FormInput";
 import CustomButton from "../components/CustomButton";
-import DashboardHeader from "../components/DashboardHeader";
+import EmployeeDashboardHeader from "../components/EmployeeDashboardHeader";
 
 class AbsenceRequestPage extends Component {
   constructor(props) {
@@ -76,7 +76,7 @@ class AbsenceRequestPage extends Component {
 
     return (
       <div className="absence-page-container">
-        <DashboardHeader currentUser={this.props.currentUser} />
+        <EmployeeDashboardHeader currentUser={this.props.currentUser} />
         <div className="absence-page-main">
           <h2 className="title">Absence Request Form</h2>
           <div className="absence-page-form-container">

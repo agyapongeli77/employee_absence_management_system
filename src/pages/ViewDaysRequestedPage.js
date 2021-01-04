@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firebase, { auth, db } from "../firebase/firebase.utils";
-import DashboardHeader from "../components/DashboardHeader";
+import EmployeeDashboardHeader from "../components/EmployeeDashboardHeader";
 
 class ViewDaysRequestedPage extends Component {
   constructor(props) {
@@ -101,7 +101,7 @@ class ViewDaysRequestedPage extends Component {
 
     return (
       <div>
-        <DashboardHeader currentUser={this.props.currentUser} />
+        <EmployeeDashboardHeader currentUser={this.props.currentUser} />
         <h1> LIST OF DAYS REQUESTED </h1>
         {this.props.currentUser &&
           this.state.absence.map((absenceData, index) => (

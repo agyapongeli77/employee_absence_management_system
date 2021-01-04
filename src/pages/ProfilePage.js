@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/ProfilePage.scss";
-import DashboardHeader from "../components/DashboardHeader";
+import EmployeeDashboardHeader from "../components/EmployeeDashboardHeader";
 
 const ProfilePage = (props) => {
   const { currentUser } = props;
@@ -9,7 +9,7 @@ const ProfilePage = (props) => {
   if (currentUser !== null) {
     return (
       <div className="profilepage">
-        <DashboardHeader currentUser={currentUser} />
+        <EmployeeDashboardHeader currentUser={currentUser} />
         <h1> Employee's Full Name: {currentUser.fullName} </h1>
         <h1> Employee's Email: {currentUser.email} </h1>
         <h1> Employee's Department: {currentUser.department} </h1>
