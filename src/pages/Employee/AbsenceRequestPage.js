@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import {
   auth,
   createUserAbsenceRequestDocument,
-} from "../firebase/firebase.utils";
-import "../styles/AbsenceRequestPage.scss";
-import FormInput from "../components/FormInput";
-import CustomButton from "../components/CustomButton";
-import EmployeeDashboardHeader from "../components/EmployeeDashboardHeader";
+} from "../../firebase/firebase.utils";
+import "../../styles/AbsenceRequestPage.scss";
+import FormInput from "../../components/FormInput";
+import CustomButton from "../../components/CustomButton";
+import EmployeeDashboardHeader from "../../components/EmployeeDashboardHeader";
 
 class AbsenceRequestPage extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class AbsenceRequestPage extends Component {
       absenceStartDate: "",
       absenceEndDate: "",
       dateOfReturn: "",
+      dateOfVacationRequest: "",
     };
   }
 
@@ -30,22 +31,26 @@ class AbsenceRequestPage extends Component {
       absenceStartDate,
       absenceEndDate,
       dateOfReturn,
+      dateOfVacationRequest,
     } = this.state;
 
     const fullName = this.props.currentUser.fullName;
     const office = this.props.currentUser.office;
     const department = this.props.currentUser.department;
+    const supervisor = this.props.currentUser.supervisor;
 
     try {
       await createUserAbsenceRequestDocument(auth.currentUser, {
         fullName,
         office,
         department,
+        supervisor,
         typeOfAbsenceRequest,
         numberOfDaysRequested,
         absenceStartDate,
         absenceEndDate,
         dateOfReturn,
+        dateOfVacationRequest,
       });
 
       this.setState({
@@ -54,6 +59,7 @@ class AbsenceRequestPage extends Component {
         absenceStartDate: "",
         absenceEndDate: "",
         dateOfReturn: "",
+        dateOfVacationRequest: "",
       });
     } catch (error) {
       console.error(error);
@@ -72,6 +78,7 @@ class AbsenceRequestPage extends Component {
       absenceStartDate,
       absenceEndDate,
       dateOfReturn,
+      dateOfVacationRequest,
     } = this.state;
 
     return (
@@ -122,6 +129,13 @@ class AbsenceRequestPage extends Component {
                 value={dateOfReturn}
                 onChange={this.handleChange}
                 label="Returning Date:"
+              />
+              <FormInput
+                type="date"
+                name="dateOfVacationRequest"
+                value={dateOfVacationRequest}
+                onChange={this.handleChange}
+                label="Date of Vacation Request:"
               />
 
               <CustomButton type="submit">SUBMIT</CustomButton>

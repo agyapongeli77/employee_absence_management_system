@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import EmployeeSignInPage from "./pages/EmployeeSignInPage";
-import AdminPage from "./pages/AdminPage";
-import ProfilePage from "./pages/ProfilePage";
-import AbsenceRequestPage from "./pages/AbsenceRequestPage";
-import ViewDaysRequestedPage from "./pages/ViewDaysRequestedPage";
+import EmployeeSignInPage from "./pages/Employee/EmployeeSignInPage";
+import AdminPage from "./pages/Admin/AdminPage";
+import ProfilePage from "./pages/Employee/ProfilePage";
+import AbsenceRequestPage from "./pages/Employee/AbsenceRequestPage";
+import ViewDaysRequestedPage from "./pages/Employee/ViewDaysRequestedPage";
 
 class App extends Component {
   constructor(props) {

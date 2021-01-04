@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/ProfilePage.scss";
-import EmployeeDashboardHeader from "../components/EmployeeDashboardHeader";
+import "../../styles/ProfilePage.scss";
+import EmployeeDashboardHeader from "../../components/EmployeeDashboardHeader";
 
 const ProfilePage = (props) => {
   const { currentUser } = props;

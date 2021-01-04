@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "../styles/EmployeeSignInPage.scss";
-import { auth } from "../firebase/firebase.utils";
+import "../../styles/EmployeeSignInPage.scss";
+import { auth } from "../../firebase/firebase.utils";
 import { withRouter } from "react-router-dom";
-import FormInput from "../components/FormInput";
-import CustomButton from "../components/CustomButton";
-import Header from "../components/Header";
+import FormInput from "../../components/FormInput";
+import CustomButton from "../../components/CustomButton";
+import Header from "../../components/Header";
 
 class EmployeeSignInPage extends Component {
   constructor(props) {

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { auth, createUserProfileDocument } from "../firebase/firebase.utils";
-import FormInput from "../components/FormInput";
-import CustomButton from "../components/CustomButton";
-import "../styles/AdminPage.scss";
-import Header from "../components/Header";
+import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import FormInput from "../../components/FormInput";
+import CustomButton from "../../components/CustomButton";
+import "../../styles/AdminPage.scss";
+import Header from "../../components/Header";
 
 class AdminPage extends Component {
   constructor(props) {
