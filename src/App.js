@@ -3,12 +3,12 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import EmployeeSignInPage from "./pages/Employee/EmployeeSignInPage";
-import AdminPage from "./pages/Admin/AdminPage";
 import ProfilePage from "./pages/Employee/ProfilePage";
 import AbsenceRequestPage from "./pages/Employee/AbsenceRequestPage";
 import ViewDaysRequestedPage from "./pages/Employee/ViewDaysRequestedPage";
 import AdminLogInPage from "./pages/Admin/AdminLogInPage";
 import NewEmployeeAccountPage from "./pages/Admin/NewEmployeeAccountPage";
+import ViewAllEmployeesDaysRequestedPage from "./pages/Admin/ViewAllEmployeesDaysRequestedPage";
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +51,14 @@ class App extends Component {
           <Route exact path="/" component={EmployeeSignInPage} />
           <Route path="/adminlogin" component={AdminLogInPage} />
           <Route path="/newemployeesignup" component={NewEmployeeAccountPage} />
+          <Route
+            path="/viewallemployeesvacationdays"
+            render={() => (
+              <ViewAllEmployeesDaysRequestedPage
+                currentUser={this.state.currentUser}
+              />
+            )}
+          />
           <Route
             path="/profile"
             render={() => <ProfilePage currentUser={this.state.currentUser} />}
