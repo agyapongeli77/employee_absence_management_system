@@ -6,8 +6,8 @@ const Header = () => {
   return (
     <div className="header">
       <div className="options">
-        <Link className="option" to="/admin">
-          ADMIN
+        <Link className="option" to="/adminlogin">
+          ADMIN SIGN IN
         </Link>
         <Link className="option" to="/">
           EMPLOYEE SIGN IN

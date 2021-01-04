@@ -7,6 +7,7 @@ import AdminPage from "./pages/Admin/AdminPage";
 import ProfilePage from "./pages/Employee/ProfilePage";
 import AbsenceRequestPage from "./pages/Employee/AbsenceRequestPage";
 import ViewDaysRequestedPage from "./pages/Employee/ViewDaysRequestedPage";
+import AdminLogInPage from "./pages/Admin/AdminLogInPage";
 
 class App extends Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={EmployeeSignInPage} />
-          <Route path="/admin" component={AdminPage} />
+          <Route path="/adminlogin" component={AdminLogInPage} />
           <Route
             path="/profile"
             render={() => <ProfilePage currentUser={this.state.currentUser} />}
