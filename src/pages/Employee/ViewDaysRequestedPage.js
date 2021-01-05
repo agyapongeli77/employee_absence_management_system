@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { auth, db } from "../../firebase/firebase.utils";
+import { db } from "../../firebase/firebase.utils";
 import EmployeeDashboardHeader from "../../components/EmployeeDashboardHeader";
 
 class ViewDaysRequestedPage extends Component {

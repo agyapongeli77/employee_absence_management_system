@@ -1,86 +1,79 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../../styles/AdminLogInPage.scss";
 import { auth } from "../../firebase/firebase.utils";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import FormInput from "../../components/FormInput";
 import CustomButton from "../../components/CustomButton";
 import Header from "../../components/Header";
 
-class AdminLogInPage extends Component {
-  constructor(props) {
-    super(props);
+const AdminLogInPage = () => {
+  const [admin, setAdmin] = useState({ email: "", password: "" });
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
+  //declaration of react router useHistory HOC(High Order Component)
+  //which works with only react hooks
+  const history = useHistory();
 
-  handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { email, password } = this.state;
-
-    if (email !== "admin@company.com") {
+    if (admin.email !== "admin@company.com") {
       alert("You are not an admin");
-      this.setState({ email: "", password: "" });
+      setAdmin({ email: "", password: "" });
       return;
     }
 
     try {
-      await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: "", password: "" });
+      await auth.signInWithEmailAndPassword(admin.email, admin.password);
+      setAdmin({ email: "", password: "" });
 
-      //sends the user to the profile page when sign is successful
-      //react router withRouter High Order Component(HOC) makes it possible
+      //logs the admin in and sends them to the new employee sign up page when sign is successful
+      //react router withHistory High Order Component(HOC) makes it possible
       //to access the history prop in this component
-      this.props.history.push("/newemployeesignup");
+      history.push("/newemployeesignup");
     } catch (error) {
       console.log("error signing in", error);
       alert("Incorrect admin password");
     }
   };
 
-  handleChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setAdmin({ ...admin, [name]: value });
   };
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <div className="admin-login-page">
-          <h1 className="title">Employee Absence Management System</h1>
-          <div className="login-page-form-container">
-            <h2 className="sub-title">Admin Sign In</h2>
-            <span>Please log in with your admin credentials</span>
-            <form onSubmit={this.handleSubmit}>
-              <FormInput
-                type="email"
-                value={this.state.email}
-                name="email"
-                onChange={this.handleChange}
-                id="email"
-                label="Email"
-                required
-              />
-              <FormInput
-                type="password"
-                value={this.state.password}
-                name="password"
-                onChange={this.handleChange}
-                id="password"
-                label="Password"
-                required
-              />
-              <CustomButton type="submit">SIGN IN</CustomButton>
-            </form>
-          </div>
+  return (
+    <div>
+      <Header />
+      <div className="admin-login-page">
+        <h1 className="title">Employee Absence Management System</h1>
+        <div className="login-page-form-container">
+          <h2 className="sub-title">Admin Sign In</h2>
+          <span>Please log in with your admin credentials</span>
+          <form onSubmit={handleSubmit}>
+            <FormInput
+              type="email"
+              value={admin.email}
+              name="email"
+              onChange={handleChange}
+              id="email"
+              label="Email"
+              required
+            />
+            <FormInput
+              type="password"
+              value={admin.password}
+              name="password"
+              onChange={handleChange}
+              id="password"
+              label="Password"
+              required
+            />
+            <CustomButton type="submit">SIGN IN</CustomButton>
+          </form>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default withRouter(AdminLogInPage);
+export default AdminLogInPage;

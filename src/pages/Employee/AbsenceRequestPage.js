@@ -15,7 +15,7 @@ class AbsenceRequestPage extends Component {
     this.state = {
       typeOfAbsenceRequest: "",
       numberOfDaysRequested: "",
-      absenceStartDate: "",
+      absenceStartDate: new Date(),
       absenceEndDate: "",
       dateOfReturn: "",
       dateOfVacationRequest: "",
@@ -56,10 +56,10 @@ class AbsenceRequestPage extends Component {
       this.setState({
         typeOfAbsenceRequest: "",
         numberOfDaysRequested: "",
-        absenceStartDate: "",
         absenceEndDate: "",
         dateOfReturn: "",
         dateOfVacationRequest: "",
+        absenceStartDate: new Date(),
       });
     } catch (error) {
       console.error(error);
@@ -137,7 +137,6 @@ class AbsenceRequestPage extends Component {
                 onChange={this.handleChange}
                 label="Date of Vacation Request:"
               />
-
               <CustomButton type="submit">SUBMIT</CustomButton>
             </form>
           </div>
